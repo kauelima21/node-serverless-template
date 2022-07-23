@@ -1,0 +1,26 @@
+service: service-name
+
+frameworkVersion: '3'
+
+plugins:
+  - serverless-webpack
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true # enable auto-packing of external modules
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+
+functions:
+  storeSecret:
+    handler: src/handlers/hello.handler
+    events:
+      - http:
+          method: get
+          path: /
+          cors: true
