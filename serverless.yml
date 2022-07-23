@@ -17,7 +17,7 @@ provider:
   region: ${opt:region, 'us-east-1'}
 
 functions:
-  storeSecret:
+  hello:
     handler: src/handlers/hello.handler
     events:
       - http:
